@@ -1,0 +1,218 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Programming-discussion-forum web API services Swagger Documentation",
+      "version": "1.0.0",
+      "title": "Programming-discussion-forum API",
+      "contact": {
+        "email": "sonamk1509@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "host": "localhost:5000",
+    "basePath": "/api",
+    "paths": {
+      "/users": {
+        "get": {
+          "summary": "Get all the users",
+          "description": "Get all the users",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/usersResponse"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value",
+              "schema": {
+                "$ref": "#/definitions/InvalidResponse"
+              }
+            }
+          }
+        }
+      },
+      "/user/signup": {
+        "post": {
+          "summary": "Signup the user",
+          "description": "Signup the user",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "user object",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/usersResponse"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value",
+              "schema": {
+                "$ref": "#/definitions/InvalidResponse"
+              }
+            }
+          }
+        }
+    },
+    
+      "/user/update/{id}": {
+        "put": {
+          "summary": "Update the user information",
+          "description": "Update the user information",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User id that needs to be deleted",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "user object",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/User"
+              
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/usersResponse"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value",
+              "schema": {
+                "$ref": "#/definitions/InvalidResponse"
+              }
+            }
+          }
+        }
+      },
+      "/user/{id}": {
+        "get": {
+          "summary": "GET the user information",
+          "description": "GET the user information",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "user id that needs to be deleted",
+              "required": true,
+              "type": "string"
+            }
+           
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/usersResponse"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value",
+              "schema": {
+                "$ref": "#/definitions/InvalidResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "usersResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "InvalidResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
